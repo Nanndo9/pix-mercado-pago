@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+// src/components/CurrencyInput.tsx
+import React, { useEffect, useState } from 'react';
 import { InputText } from 'primereact/inputtext';
 
 interface CurrencyInputProps {
-    value: string;
-    onChange: (value: string) => void;
+    value: number;               // Valor em reais, ex.: 1.00
+    onChange: (value: number) => void;
     id?: string;
     placeholder?: string;
     className?: string;
@@ -18,12 +19,12 @@ export const CurrencyInput: React.FC<CurrencyInputProps> = ({
 }) => {
     const [displayValue, setDisplayValue] = useState('');
 
-    const formatCurrency = (val: string): string => {
-        const cleaned = val.replace(/\D/g, '');
-        if (!cleaned) return '';
-        const numericValue = parseInt(cleaned, 10);
-        const amount = numericValue / 100;
-        return amount.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    const formatCurrency = (val: number): string => {
+        if (!val) return '';
+        return val.toLocaleString('pt-BR', {
+            style: 'currency',
+            currency: 'BRL'
+        });
     };
 
     useEffect(() => {
@@ -32,7 +33,13 @@ export const CurrencyInput: React.FC<CurrencyInputProps> = ({
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const cleaned = e.target.value.replace(/\D/g, '');
-        onChange(cleaned);
+        if (!cleaned) {
+            onChange(0);
+            setDisplayValue('');
+            return;
+        }
+        const numericValue = parseInt(cleaned, 10) / 100;
+        onChange(numericValue);
     };
 
     return (

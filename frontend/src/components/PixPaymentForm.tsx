@@ -1,14 +1,16 @@
+// src/components/PixPaymentForm.tsx
 import React, { useState } from 'react';
-import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';
+import { Button } from 'primereact/button';
+import { InputText } from 'primereact/inputtext';
 import { BlockUI } from 'primereact/blockui';
 import { ProgressSpinner } from 'primereact/progressspinner';
-import { CurrencyInput } from '../components/CurrencyInput';
+
+import { CurrencyInput } from './CurrencyInput';
 import { usePixPayment } from '../hooks/usePixPayment';
-import { InputText } from 'primereact/inputtext';
 
 const PixPaymentForm: React.FC = () => {
-    const [amount, setAmount] = useState<string>('');
+    const [amount, setAmount] = useState<number>(0);
     const [description, setDescription] = useState<string>('');
     const [email, setEmail] = useState<string>('');
 
@@ -20,7 +22,17 @@ const PixPaymentForm: React.FC = () => {
     };
 
     return (
-        <BlockUI blocked={loading} template={<ProgressSpinner style={{ width: '50px', height: '50px' }} strokeWidth="4" />}>
+        <BlockUI
+            blocked={loading}
+            template={
+                <ProgressSpinner
+                    style={{ width: '50px', height: '50px' }}
+                    strokeWidth="4"
+                    fill="var(--surface-ground)"
+                    animationDuration=".5s"
+                />
+            }
+        >
             <div className="flex justify-content-center align-items-center min-h-screen p-4 surface-ground">
                 <Card
                     title="Pagamento via PIX"
@@ -77,7 +89,6 @@ const PixPaymentForm: React.FC = () => {
                         <Button
                             type="submit"
                             label="Gerar PIX"
-                            icon="pi pi-check"
                             loading={loading}
                             className="w-full mt-3"
                         />
