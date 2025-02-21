@@ -1,4 +1,4 @@
-import { PixMercadoPagoService } from "../services/mercadoPago/pixMercadoPagoService";
+import { PixMercadoPagoService } from '../services/mercadoPago/pixMercadoPagoService';
 import { Request, Response } from 'express';
 
 export class PixController {
@@ -12,9 +12,8 @@ export class PixController {
                 description,
                 email
             );
-            console.log(payment)
+            console.log(payment);
             return res.status(201).json(payment);
-            
         } catch (error) {
             console.error('Erro no createPayment:', error);
             return res.status(500).json({ message: 'Internal server error' });

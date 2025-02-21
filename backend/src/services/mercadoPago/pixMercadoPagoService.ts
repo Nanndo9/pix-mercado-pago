@@ -22,23 +22,13 @@ export class PixMercadoPagoService {
                 payer: {
                     email: email,
                 },
-                notification_url:
-                    process.env.MP_NOTIFICATION_URL || '',
+                notification_url: process.env.MP_NOTIFICATION_URL || '',
             };
 
             const result = await this.payment.create({ body: paymentBody });
             return result;
         } catch (error) {
             console.error('Erro ao criar pagamento:', error);
-            throw error;
-        }
-    }
-    async getPaymentStatus(paymentId: string) {
-        try {
-            const result = await this.payment.get({ id: paymentId });
-            return result;
-        } catch (error) {
-            console.error('Erro ao buscar status do pagamento:', error);
             throw error;
         }
     }
