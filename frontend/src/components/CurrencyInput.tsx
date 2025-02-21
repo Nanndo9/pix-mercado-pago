@@ -1,9 +1,8 @@
-// src/components/CurrencyInput.tsx
 import React, { useEffect, useState } from 'react';
 import { InputText } from 'primereact/inputtext';
 
 interface CurrencyInputProps {
-    value: number;               // Valor em reais, ex.: 1.00
+    value: number;    
     onChange: (value: number) => void;
     id?: string;
     placeholder?: string;

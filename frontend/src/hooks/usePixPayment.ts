@@ -1,4 +1,3 @@
-// src/hooks/usePixPayment.ts
 import { useState } from 'react';
 import { createPixPayment } from '../services/pixPaymentService';
 
