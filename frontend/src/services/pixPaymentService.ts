@@ -14,7 +14,7 @@ export const createPixPayment = async (
     email: string
 ): Promise<PixResponse> => {
     const response = await axios.post<PixResponse>(
-        'http://localhost:3000/pix/create',
+        `${process.env.API_URL}/pix/create`,
         {
             amount,
             description,
