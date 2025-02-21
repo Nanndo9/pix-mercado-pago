@@ -12,8 +12,9 @@ export class PixController {
                 description,
                 email
             );
-
+            console.log(payment)
             return res.status(201).json(payment);
+            
         } catch (error) {
             console.error('Erro no createPayment:', error);
             return res.status(500).json({ message: 'Internal server error' });
