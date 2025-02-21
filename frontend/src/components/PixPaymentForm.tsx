@@ -4,7 +4,6 @@ import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import { BlockUI } from 'primereact/blockui';
 import { ProgressSpinner } from 'primereact/progressspinner';
-
 import { CurrencyInput } from './CurrencyInput';
 import { usePixPayment } from '../hooks/usePixPayment';
 
